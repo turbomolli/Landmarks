@@ -34,12 +34,29 @@ struct ContentView: View {
                     .font(.title2)
                 Text("Descreptive text goes here")
             }
+            
             .padding()
             
             Spacer()
             
+            
            
         }
+        .background(MeshGradient(width: 3, height: 3, points: [
+                        [0.0, 0.0], [0.5, 0], [1.0, 0.0],
+                        [0.0, 0.5], [0.9, 0.5], [1.0, 0.5],
+                        [0.0, 1.0], [0.5, 1.0], [1.0, 1.0]
+                    ], colors: [
+                        .red, .purple, .indigo,
+                        .orange, .blue, .blue,
+                        .yellow, .green, .mint
+                    ],
+                                 
+                        smoothsColors: true,
+                        colorSpace: .perceptual
+                    )
+        )
+        .ignoresSafeArea()
             
     }
 }
