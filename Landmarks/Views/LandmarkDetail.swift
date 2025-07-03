@@ -7,22 +7,24 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct LandmarkDetail: View {
+    var landmark: Landmark
+    
     var body: some View {
-        VStack {
-            MapView()
+        ScrollView {
+            MapView(coordinate: landmark.locationCoordinate)
                 .frame(height: 300)
-            CircleImage()
+            CircleImage(image: landmark.image)
                 .offset(y: -130)
                 .padding(.bottom, -130)
             VStack(alignment: .leading) {
-                Text("Turtle Rock")
+                Text(landmark.name)
                     .font(.title)
                 HStack {
-                    Text("Joshua Tree National Park")
+                    Text(landmark.park)
                         
                     Spacer()
-                    Text("California")
+                    Text(landmark.state)
                     
                 }
                 .font(.subheadline)
@@ -30,21 +32,20 @@ struct ContentView: View {
                 
                 Divider()
                 
-                Text("About Turtle Rock")
+                Text("About \(landmark.name)")
                     .font(.title2)
-                Text("Descreptive text goes here")
+                Text(landmark.description)
             }
             
             .padding()
             
-            Spacer()
-            
-            
            
         }
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.inline)
         .background(MeshGradient(width: 3, height: 3, points: [
                         [0.0, 0.0], [0.5, 0.0], [1.0, 0.0],
-                        [0.0, 0.5], [0.5, 0.5], [1.0, 0.5],
+                        [0.0, 0.5], [0.5, 0.5], [1.0, 0.3],
                         [0.0, 1.0], [0.5, 1.0], [1.0, 1.0]
                     ], colors: [
                         .red, .white, .indigo,
@@ -62,5 +63,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LandmarkDetail(landmark: landmarks[0])
 }
